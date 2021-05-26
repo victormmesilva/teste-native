@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const router = require('express').Router();
 
 const { Customers } = require('../models');
@@ -13,23 +14,17 @@ router.get('/', async (_req, res, next) => {
   }
 });
 
-router.get('/city/:city/total', async (req, res, next) => {
+router.get('/cities/total', async (_req, res, next) => {
   try {
-    const { params } = req;
-    const { city } = params;
-
-    const customers = await Customers.findAll({
-      where: {
-        city,
-      },
+    const cities = await Customers.findAll({
+      attributes: [
+        'city',
+        [Sequelize.fn('COUNT', Sequelize.col('city')), 'customers_total'],
+      ],
+      group: ['city'],
     });
 
-    const response = {
-      city,
-      customers_total: customers.length,
-    }
-
-    res.status(200).send(response);
+    res.status(200).send(cities);
   } catch (e) {
     console.error(`customers-route-get-total: ${e.message}`);
     next(e);
