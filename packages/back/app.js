@@ -1,32 +1,15 @@
-const { Sequelize } = require('sequelize');
 const express = require('express');
+const cors = require('cors');
+const routes = require('./routes');
+
 const app = express();
 const port = 3001;
 
-const sequelize = new Sequelize(
-  'teste_native',
-  'root',
-  '', {
-  host: 'localhost',
-  port: '3306',
-  dialect: 'mysql',/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
-});
+app.use(express.json());
+app.use(cors());
 
-const testConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-};
-
-testConnection();
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api', routes);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`App listening at http://localhost:${port}`);
+});
