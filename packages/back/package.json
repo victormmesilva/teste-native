@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./app.js",
+    "start-mysql": "docker run -p 3306:3306 --name mysql-docker -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql",
+    "create-database": "npx sequelize-cli db:create",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
