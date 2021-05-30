@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./app.js",
+    "start": "nodemon ./app.js --inspect",
     "start-mysql": "docker run -p 3306:3306 --name mysql-docker -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql",
     "create-database": "npx sequelize-cli db:create",
     "migrate": "npx sequelize-cli db:migrate",
@@ -16,8 +16,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "http": "0.0.1-security",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",

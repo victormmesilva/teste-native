@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.cards {
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr 1fr;
+ grid-gap: 8px;
+}
+
+.card {
+  background-color: lightblue;
+  border-radius: 8px;
+  margin: 8px;
+  padding: 16px 8px;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,35 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import api from 'axios';
+import Context from '../../context';
 
 const Home = () => {
+  const { messages, setMessages } = useContext(Context);
   const [cities, setCities] = useState([]);
 
-  useEffect(() => {
-    const getCities = async () => {
-      try {
-        const { data } = await api.get('http://localhost:3001/api/customers/cities/total');
-        setCities(data);
-      } catch (error) {
-        console.error(error.message);
-      }
+  const getCities = useCallback(async () => {
+    try {
+      const { data } = await api.get('http://localhost:3001/api/customers/cities/total');
+      setCities(data);
+    } catch (error) {
+      console.error(error.message);
     }
-
-    getCities();
   }, []);
+  
+  useEffect(() => {
+    if(messages.includes('update')) {
+      getCities();
+      setMessages((oldMessages) => oldMessages.filter(msg => msg != 'update'));
+    }
+  }, [messages]);
+  useEffect(() => getCities(), []);
 
   return (
     <>
       <h1>Home</h1>
-      <div>
+      <div className="cards">
         {
           cities
             .map(({ city, customers_total }) => (
-              <div key={city}>
-                <Link to={`/city/${city}`}>
-                  {`city: ${city} | total: ${customers_total}`}
-                </Link>
-              </div>
+              <Link to={`/city/${city}`} key={city}>
+                <div className="card">
+                  <p>{`Cidade: ${city}`}</p>
+                  <p>{`Total de clientes: ${customers_total}`}</p>
+                </div>
+              </Link>
             ))
         }
       </div>

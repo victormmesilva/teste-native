@@ -2,15 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import api from 'axios';
 
+const limit = 5;
+
 const City = () => {
   const { city } = useParams();
   const [customers, setCustomers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const getCustomers = async () => {
       try {
-        const { data } = await api.get(`http://localhost:3001/api/customers/city/${city}`);
-        setCustomers(data);
+        const { data } = await api.get(`http://localhost:3001/api/customers/city/${city}`, {
+          params: {
+            limit,
+            offset: (page - 1) * limit,
+          },
+        });
+
+        setCustomers(data.customers);
+        setCount(data.count);
       } catch (error) {
         console.error(error.message);
       }
@@ -19,7 +30,7 @@ const City = () => {
     if (city) {
       getCustomers();
     }
-  }, [city]);
+  }, [city, page]);
 
   return (
     <>
@@ -57,6 +68,25 @@ const City = () => {
               ))
           }
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="9">
+              <button
+                disabled={page <= 1}
+                onClick={() => setPage(p => p - 1)}
+              >
+                Anterior
+              </button>
+              {`Página ${page} de ${Math.ceil(count / limit)} | Total: ${count}`}
+              <button
+                disabled={(page >= count / limit)}
+                onClick={() => setPage(p => p + 1)}
+              >
+                Próxima
+              </button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </>
   );

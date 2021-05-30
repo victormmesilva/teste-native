@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import api from 'axios';
 
 const EditCustomer = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [customer, setCustomer] = useState(null);
 
@@ -17,8 +18,8 @@ const EditCustomer = () => {
     }
   }, [id]);
 
-  const handleChange = ({ target }) => setCustomer((oldCust) => ({
-    ...oldCust,
+  const handleChange = ({ target }) => setCustomer((oldCustomer) => ({
+    ...oldCustomer,
     [target.name]: target.value,
   }));
 
@@ -29,7 +30,7 @@ const EditCustomer = () => {
       const { status } = await api.put(`http://localhost:3001/api/customers/${id}`, customer);
 
       if (status === 204) {
-        console.log('UPDATE DEU CERTO');
+        history.push('/');
       }
     } catch (error) {
       console.error(error.message);

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const router = require('express').Router();
-
 const { Customers } = require('../models');
+const ws = require('../ws');
 
 router.get('/', async (_req, res, next) => {
   try {
@@ -33,16 +33,23 @@ router.get('/cities/total', async (_req, res, next) => {
 
 router.get('/city/:city', async (req, res, next) => {
   try {
-    const { params } = req;
+    const { query, params } = req;
+    const { limit, offset } = query;
     const { city } = params;
 
-    const customers = await Customers.findAll({
+    const { count, rows } = await Customers.findAndCountAll({
       where: {
         city,
       },
+      order: [
+        ['first_name', 'ASC'],
+        ['last_name', 'ASC'],
+      ],
+      limit: Number(limit),
+      offset: Number(offset),
     });
 
-    res.status(200).send(customers);
+    res.status(200).send({ count, customers: rows });
   } catch (e) {
     console.error(`customers-route-get-:city-error: ${e.message}`);
     next(e);
@@ -96,6 +103,7 @@ router.put('/:id', async (req, res, next) => {
       },
     });
 
+    ws.sendUpdate();
     res.status(204).send(customerUpdated);
   } catch (error) {
     console.error(`customer-route-put-:id-/error: ${error.message}`);
