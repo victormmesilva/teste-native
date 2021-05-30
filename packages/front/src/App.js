@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,

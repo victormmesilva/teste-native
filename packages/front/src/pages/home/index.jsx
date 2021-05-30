@@ -19,10 +19,10 @@ const Home = () => {
   useEffect(() => {
     if(messages.includes('update')) {
       getCities();
-      setMessages((oldMessages) => oldMessages.filter(msg => msg != 'update'));
+      setMessages((oldMessages) => oldMessages.filter(msg => msg !== 'update'));
     }
-  }, [messages]);
-  useEffect(() => getCities(), []);
+  }, [messages, getCities, setMessages]);
+  useEffect(() => getCities(), [getCities]);
 
   return (
     <>
