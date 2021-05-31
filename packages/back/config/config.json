@@ -3,7 +3,7 @@
     "username": "root",
     "password": null,
     "database": "teste_native",
-    "host": "localhost",
+    "host": "mysqldb",
     "dialect": "mysql"
   }
 }
