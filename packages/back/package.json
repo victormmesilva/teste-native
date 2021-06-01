@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all &&npx sequelize-cli db:seed:all && node ./app.js",
-    "start-dev": "nodemon ./app.js",
+    "start-dev": "nodemon ./app.js --inspect",
     "start-mysql": "docker run -p 3306:3306 --name mysql-docker -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql",
     "create-database": "npx sequelize-cli db:create",
     "migrate": "npx sequelize-cli db:migrate",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "mysql2": "^2.2.5",

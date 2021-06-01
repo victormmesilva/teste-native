@@ -1,9 +1,0 @@
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "teste_native",
-    "host": "mysqldb",
-    "dialect": "mysql"
-  }
-}
