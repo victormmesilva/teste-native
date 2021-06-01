@@ -57,3 +57,12 @@ a {
 form {
   display: table-caption;
 }
+
+table, thead, tbody, tr, th, td {
+  border: 1px solid black;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+}

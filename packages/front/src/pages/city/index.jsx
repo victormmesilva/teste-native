@@ -46,7 +46,7 @@ const City = () => {
             <th>Company</th>
             <th>City</th>
             <th>Title</th>
-            <th>Actions</th>
+            <th colSpan="2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@ const City = () => {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="9">
+            <td colSpan="10">
               <button
                 disabled={page <= 1}
                 onClick={() => setPage(p => p - 1)}
