@@ -40,7 +40,7 @@ function App() {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/city/:city" component={City} />
+            <Route path="/city/:city/customers" component={City} />
             <Route exact path="/customer/:id" component={Customer} />
             <Route path="/customer/:id/edit" component={EditCustomer} />
           </Switch>

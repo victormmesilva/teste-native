@@ -53,3 +53,7 @@
 a {
   text-decoration: none;
 }
+
+form {
+  display: table-caption;
+}

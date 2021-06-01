@@ -34,7 +34,7 @@ const City = () => {
 
   return (
     <>
-      <h1>City</h1>
+      <h1>{`Clientes por cidade: (${city})`}</h1>
       <table>
         <thead>
           <tr>

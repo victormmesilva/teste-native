@@ -31,7 +31,7 @@ const Home = () => {
         {
           cities
             .map(({ city, customers_total }) => (
-              <Link to={`/city/${city}`} key={city}>
+              <Link to={`/city/${city}/customers`} key={city}>
                 <div className="card">
                   <p>{`Cidade: ${city}`}</p>
                   <p>{`Total de clientes: ${customers_total}`}</p>

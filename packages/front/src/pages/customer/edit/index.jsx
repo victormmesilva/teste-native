@@ -39,7 +39,7 @@ const EditCustomer = () => {
 
   return (
     <>
-      <h1>{`Edit customer ${id}`}</h1>
+      <h1>{`Editar cliente (id: ${id})`}</h1>
       {
         customer && (
           <form onSubmit={handleSubmit}>
@@ -120,7 +120,7 @@ const EditCustomer = () => {
               />
             </label>
             <button type="submit">Salvar</button>
-            <button type="reset">Cancelar</button>
+            <button onClick={() => history.push('/')}>Cancelar</button>
           </form>
         )
       }
