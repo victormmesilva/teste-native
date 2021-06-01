@@ -18,11 +18,8 @@ import './App.css';
 function App() {
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => console.log('effect-messages', messages), [messages]);
-
   useEffect(() => {
     const client = new WebSocket('ws://localhost:8000');
-    client.onopen = () => console.log('WEB SOCKET BOMBANDO');
     client.onmessage = ({ data }) => setMessages((oldMessages) => [...oldMessages, data]);
   }, []);
 
