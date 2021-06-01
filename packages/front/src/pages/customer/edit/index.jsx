@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from "react-router-dom";
-import api from 'axios';
+import api from '../../../api';
 
 const EditCustomer = () => {
   const history = useHistory();
@@ -9,7 +9,7 @@ const EditCustomer = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data } = await api.get(`http://localhost:3001/api/customers/${id}`);
+      const { data } = await api.get(`/customers/${id}`);
       setCustomer(data);
     };
 
@@ -27,7 +27,7 @@ const EditCustomer = () => {
     event.preventDefault();
 
     try {
-      const { status } = await api.put(`http://localhost:3001/api/customers/${id}`, customer);
+      const { status } = await api.put(`/customers/${id}`, customer);
 
       if (status === 204) {
         history.push('/');

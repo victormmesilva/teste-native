@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Link } from "react-router-dom";
-import api from 'axios';
+import api from '../../api';
 import Context from '../../context';
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
 
   const getCities = useCallback(async () => {
     try {
-      const { data } = await api.get('http://localhost:3001/api/customers/cities/total');
+      const { data } = await api.get('/customers/cities/total');
       setCities(data);
     } catch (error) {
       console.error(error.message);

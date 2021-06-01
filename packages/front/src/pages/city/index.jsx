@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-import api from 'axios';
+import api from '../../api';
 
 const limit = 5;
 
@@ -13,7 +13,7 @@ const City = () => {
   useEffect(() => {
     const getCustomers = async () => {
       try {
-        const { data } = await api.get(`http://localhost:3001/api/customers/city/${city}`, {
+        const { data } = await api.get(`customers/city/${city}`, {
           params: {
             limit,
             offset: (page - 1) * limit,

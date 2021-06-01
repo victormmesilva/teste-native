@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import api from 'axios';
+import api from '../../api';
 
 const EditCustomer = () => {
   const { id } = useParams();
@@ -8,7 +8,7 @@ const EditCustomer = () => {
 
   useEffect(() => {
     const getCustomer = async () => {
-      const { data } = await api.get(`http://localhost:3001/api/customers/${id}`);
+      const { data } = await api.get(`/customers/${id}`);
       setCustomer(data);
     };
 
