@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import api from '../../api';
+import './styles.scss';
 
 const EditCustomer = () => {
   const { id } = useParams();
@@ -18,18 +19,25 @@ const EditCustomer = () => {
   }, [id]);
 
   return customer && (
-    <>
-      <h1>{`${customer.first_name} ${customer.last_name}`}</h1>
-      <div>
-        <p>{`First name: ${customer.first_name}`}</p>
-        <p>{`Last name: ${customer.last_name}`}</p>
-        <p>{`Email: ${customer.email}`}</p>
-        <p>{`Gender: ${customer.gender}`}</p>
-        <p>{`Company: ${customer.company}`}</p>
-        <p>{`City: ${customer.city}`}</p>
-        <p>{`Title: ${customer.title}`}</p>
+    <div className="customer">
+      <div className="customer__card">
+        <h1 className="customer__card__title">{`${customer.first_name} ${customer.last_name}`}</h1>
+        <p className="customer__card__label">First name:</p>
+        <p className="customer__card__value">{customer.first_name}</p>
+        <p className="customer__card__label">Last name:</p>
+        <p className="customer__card__value">{customer.last_name}</p>
+        <p className="customer__card__label">Email:</p>
+        <p className="customer__card__value">{customer.email}</p>
+        <p className="customer__card__label">Gender:</p>
+        <p className="customer__card__value">{customer.gender}</p>
+        <p className="customer__card__label">Company:</p>
+        <p className="customer__card__value">{customer.company}</p>
+        <p className="customer__card__label">City:</p>
+        <p className="customer__card__value">{customer.city}</p>
+        <p className="customer__card__label">Title:</p>
+        <p className="customer__card__value">{customer.title}</p>
       </div>
-    </>
+    </div>
   );
 };
 

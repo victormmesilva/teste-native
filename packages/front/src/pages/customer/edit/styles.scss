@@ -1,0 +1,92 @@
+@import '../../../scss/variables.scss';
+
+.form {
+  display: grid;
+  grid-template-columns: 0.3fr 0.5fr;
+  margin: auto;
+  padding: 0 10%;
+}
+
+.input {
+  padding: $padding;
+  background-color: $white;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.125rem;
+  border-color: $white;
+  box-shadow: $box-shadow;
+  outline: none;
+  margin-bottom: 0.75rem;
+}
+
+.input:hover {
+  border-color: $input-color;
+}
+
+.input:focus {
+  border-color: $input-color;
+}
+
+.title {
+  text-align: center;
+}
+
+.form__container {
+  width: 100%;
+}
+
+.label {
+  grid-column: 1 / 2;
+  text-align: right;
+  margin: 0.5rem;
+}
+
+.input,
+.gender__input,
+.form__buttons,
+button {
+  grid-column: 2 / 3;
+}
+
+.form__buttons {
+  display: inline-flex;
+}
+
+.form__buttons button {
+  width: 25%;
+}
+
+.button {
+  border-radius: $border-radius;
+  margin: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-style: solid;
+  border-width: 0.125rem;
+  border-color: $white;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button--filled {
+  border-color: $input-color;
+  background-color: $input-color;
+}
+
+.button--filled:hover {
+  background-color: $white;
+}
+
+.button--text {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.button--text:hover {
+  border-color: $input-color;
+  background-color: $input-color;
+}
+
+.button:hover {
+  border-color: $input-color;
+}

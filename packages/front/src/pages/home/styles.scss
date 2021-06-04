@@ -1,0 +1,49 @@
+@import '../../scss/variables.scss';
+
+.cards {
+  padding: 2%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+}
+
+.card {
+  background-color: $white;
+  box-shadow: $box-shadow;
+  margin: 0.5rem;
+  padding: 1rem 0 0 0;
+  border-radius: $border-radius;
+  border-width: 0.125rem;
+  border-style: solid;
+  border-color: $white;
+}
+
+.card:hover {
+  border-color: $blue;
+  cursor: pointer;
+}
+
+.card__city {
+  font-size: 1.5rem;
+  color: lighten($black, 50%);
+  text-align: center;
+}
+
+.card__customers {
+  color: $white;
+  text-align: center;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.card__customers__label {
+  font-size: 0.75rem;
+  color: $gray;
+}
+
+.card__customers__num {
+  font-size: 2rem;
+  font-weight: bold;
+  color: $blue;
+}

@@ -13,7 +13,8 @@ import {
   EditCustomer,
 } from './pages';
 import Context from './context';
-import './App.css';
+import './App.scss';
+import { ReactComponent as HomeIcon } from './assets/home-icon.svg';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -27,10 +28,16 @@ function App() {
     <Router>
       <Context.Provider value={{ messages, setMessages }}>
         <div>
-          <nav>
+          <nav className="nav">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">
+                  <HomeIcon
+                    className="icon"
+                    width="24"
+                    height="24"
+                  />
+                </Link>
               </li>
             </ul>
           </nav>

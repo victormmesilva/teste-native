@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import api from '../../api';
+import './styles.scss';
 
 const limit = 5;
 
 const City = () => {
+  const history = useHistory();
   const { city } = useParams();
   const [customers, setCustomers] = useState([]);
   const [page, setPage] = useState(1);
@@ -34,55 +36,71 @@ const City = () => {
 
   return (
     <>
-      <h1>{`Clientes por cidade: (${city})`}</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>Company</th>
-            <th>City</th>
-            <th>Title</th>
-            <th colSpan="2">Actions</th>
+      <h1 className="table__title">{city}</h1>
+      <table className="table">
+        <thead className="table__thead">
+          <tr className="table__tr">
+            <th className="table__th">ID</th>
+            <th className="table__th">First name</th>
+            <th className="table__th">Last name</th>
+            <th className="table__th">Email</th>
+            <th className="table__th">Gender</th>
+            <th className="table__th">Company</th>
+            <th className="table__th">City</th>
+            <th className="table__th">Title</th>
+            <th className="table__th" colSpan="2">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table__tbody">
           {
             customers
               .map((customer) => (
-                <tr key={customer.id}>
-                  <td>{customer.id}</td>
-                  <td>{customer.first_name}</td>
-                  <td>{customer.last_name}</td>
-                  <td>{customer.email}</td>
-                  <td>{customer.gender}</td>
-                  <td>{customer.company}</td>
-                  <td>{customer.city}</td>
-                  <td>{customer.title}</td>
-                  <td><Link to={`/customer/${customer.id}/edit`}>Editar</Link></td>
-                  <td><Link to={`/customer/${customer.id}`}>Detalhes</Link></td>
+                <tr className="table__tr" key={customer.id}>
+                  <td className="table__td">{customer.id}</td>
+                  <td className="table__td">{customer.first_name}</td>
+                  <td className="table__td">{customer.last_name}</td>
+                  <td className="table__td">{customer.email}</td>
+                  <td className="table__td">{customer.gender}</td>
+                  <td className="table__td">{customer.company}</td>
+                  <td className="table__td">{customer.city}</td>
+                  <td className="table__td">{customer.title}</td>
+                  <td className="table__td">
+                    <button
+                      className="button button--text"
+                      onClick={() => history.push(`/customer/${customer.id}/edit`)}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td className="table__td">
+                    <button
+                      className="button button--text"
+                      onClick={() => history.push(`/customer/${customer.id}`)}
+                    >
+                      Details
+                    </button>
+                  </td>
                 </tr>
               ))
           }
         </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan="10">
+        <tfoot className="table__tfoot">
+          <tr className="table__tr">
+            <td className="table__td" colSpan="10">
               <button
+                className="tfoot__button"
                 disabled={page <= 1}
                 onClick={() => setPage(p => p - 1)}
               >
-                Anterior
+                Previous
               </button>
-              {`Página ${page} de ${Math.ceil(count / limit)} | Total: ${count}`}
+              {`Page ${page} of ${Math.ceil(count / limit)} | Count: ${count}`}
               <button
+                className="tfoot__button"
                 disabled={(page >= count / limit)}
                 onClick={() => setPage(p => p + 1)}
               >
-                Próxima
+                Next
               </button>
             </td>
           </tr>

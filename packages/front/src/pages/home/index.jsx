@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import api from '../../api';
 import Context from '../../context';
+import './styles.scss';
 
 const Home = () => {
+  const history = useHistory();
   const { messages, setMessages } = useContext(Context);
   const [cities, setCities] = useState([]);
 
@@ -15,9 +17,9 @@ const Home = () => {
       console.error(error.message);
     }
   }, []);
-  
+
   useEffect(() => {
-    if(messages.includes('update')) {
+    if (messages.includes('update')) {
       getCities();
       setMessages((oldMessages) => oldMessages.filter(msg => msg !== 'update'));
     }
@@ -25,22 +27,24 @@ const Home = () => {
   useEffect(() => getCities(), [getCities]);
 
   return (
-    <>
-      <h1>Home</h1>
-      <div className="cards">
-        {
-          cities
-            .map(({ city, customers_total }) => (
-              <Link to={`/city/${city}/customers`} key={city}>
-                <div className="card">
-                  <p>{`Cidade: ${city}`}</p>
-                  <p>{`Total de clientes: ${customers_total}`}</p>
-                </div>
-              </Link>
-            ))
-        }
-      </div>
-    </>
+    <div className="cards">
+      {
+        cities
+          .map(({ city, customers_total }) => (
+            <div
+              key={city}
+              className="card"
+              onClick={() => history.push(`/city/${city}/customers`)}
+            >
+              <p className="card__city">{city}</p>
+              <div className="card__customers">
+                <p className="card__customers__num">{customers_total}</p>
+                <p className="card__customers__label">Customers</p>
+              </div>
+            </div>
+          ))
+      }
+    </div>
   );
 };
 

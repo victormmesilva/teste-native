@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from "react-router-dom";
 import api from '../../../api';
+import './styles.scss';
 
 const EditCustomer = () => {
   const history = useHistory();
@@ -38,93 +39,127 @@ const EditCustomer = () => {
   }
 
   return (
-    <>
-      <h1>{`Editar cliente (id: ${id})`}</h1>
+    <div className="form__container">
+      <h1 className="title">{`Edit customer (id: ${id})`}</h1>
       {
         customer && (
-          <form onSubmit={handleSubmit}>
-            <label>
+          <form
+            className="form"
+            onSubmit={handleSubmit}
+          >
+            <label htmlFor="first_name__input" className="label">
               First name:
-              <input
-                name="first_name"
-                type="text"
-                value={customer.first_name}
-                onChange={handleChange}
-              />
             </label>
-            <label>
+            <input
+              id="first_name__input"
+              className="input"
+              name="first_name"
+              type="text"
+              value={customer.first_name}
+              onChange={handleChange}
+            />
+            <label htmlFor="last_name__input" className="label">
               Last name:
-              <input
-                name="last_name"
-                type="text"
-                value={customer.last_name}
-                onChange={handleChange}
-              />
             </label>
-            <label>
+            <input
+              id="last_name__input"
+              className="input"
+              name="last_name"
+              type="text"
+              value={customer.last_name}
+              onChange={handleChange}
+            />
+            <label htmlFor="email__input" className="label">
               Email:
-              <input
-                name="email"
-                type="text"
-                value={customer.email}
-                onChange={handleChange}
-              />
             </label>
-            <div>
-              <label>
+            <input
+              id="email__input"
+              className="input"
+              name="email"
+              type="text"
+              value={customer.email}
+              onChange={handleChange}
+            />
+            <label htmlFor="gender__input" className="label">
+              Gender:
+            </label>
+            <div id="gender__input" className="gender__input">
+              <label htmlFor="gender_male__input" className="label">
                 Male
-                <input
-                  name="gender"
-                  type="radio"
-                  value="Male"
-                  checked={customer.gender === 'Male'}
-                  onChange={handleChange}
-                />
               </label>
-              <label>
+              <input
+                id="gender_male__input"
+                className="input"
+                name="gender"
+                type="radio"
+                value="Male"
+                checked={customer.gender === 'Male'}
+                onChange={handleChange}
+              />
+              <label htmlFor="gender_female__input" className="label">
                 Female
-                <input
-                  name="gender"
-                  type="radio"
-                  value="Female"
-                  checked={customer.gender === 'Female'}
-                  onChange={handleChange}
-                />
               </label>
+              <input
+                id="gender_female__input"
+                className="input"
+                name="gender"
+                type="radio"
+                value="Female"
+                checked={customer.gender === 'Female'}
+                onChange={handleChange}
+              />
             </div>
-            <label>
+            <label htmlFor="conpany__input" className="label">
               Company:
-              <input
-                name="company"
-                type="text"
-                value={customer.company}
-                onChange={handleChange}
-              />
             </label>
-            <label>
+            <input
+              id="conpany__input"
+              className="input"
+              name="company"
+              type="text"
+              value={customer.company}
+              onChange={handleChange}
+            />
+            <label htmlFor="city__input" className="label">
               City:
-              <input
-                name="city"
-                type="text"
-                value={customer.city}
-                onChange={handleChange}
-              />
             </label>
-            <label>
+            <input
+              id="city__input"
+              className="input"
+              name="city"
+              type="text"
+              value={customer.city}
+              onChange={handleChange}
+            />
+            <label htmlFor="title__input" className="label">
               Title:
-              <input
-                name="title"
-                type="text"
-                value={customer.title}
-                onChange={handleChange}
-              />
             </label>
-            <button type="submit">Salvar</button>
-            <button onClick={() => history.push('/')}>Cancelar</button>
+            <input
+              id="title__input"
+              className="input"
+              name="title"
+              type="text"
+              value={customer.title}
+              onChange={handleChange}
+            />
+            <div className="form__buttons">
+              <button
+                className="button button--filled"
+                type="submit"
+              >
+                Send
+              </button>
+              <button
+                className="button button--text"
+                onClick={() => history.push('/')}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         )
       }
-    </>
+    </div>
   );
 };
 

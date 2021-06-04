@@ -8,8 +8,8 @@
     "bootstrap": "lerna bootstrap",
     "start": "lerna run start --parallel",
     "start-front": "lerna run start-front --stream",
-    "start-back": "lerna run start-back --stream",    
-    "test": "lerna run test"    
+    "start-back": "lerna run start-back --stream",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
